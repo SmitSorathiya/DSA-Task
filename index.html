@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <section>
+        <div class="formbox">
+            <div class="form-value">
+                <form id="dataForm" action="/submit" method="post">
+                    <h2>Enter The Details</h2><br>
+                    <div class="inputbox">
+                        <ion-icon name="create-outline"></ion-icon>
+                        <input type="text" name="name" required>
+                        <label for="name">Name</label>
+                    </div>
+
+                    <div class="inputbox">
+                        <ion-icon name="card-outline"></ion-icon>
+                        <input type="text" name="regNum" required>
+                        <label for="regNum">Registration Number</label>
+                    </div>
+
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="email" name="email" required>
+                        <label for="email">SRM Email</label>
+                    </div>
+
+                    <div class="inputbox">
+                        <ion-icon name="call-outline"></ion-icon>
+                        <input type="tel" name="phonenumber" required>
+                        <label for="phonenumber">Phone Number</label>
+                    </div><br>
+
+                    <div class="gender">
+                        <p class="genderheading">Please select Gender:<br><br>
+                            <input type="radio" id="male" name="gender" value="male">
+                            <label for="male">Male</label><br>
+                            <input type="radio" id="female" name="gender" value="female">
+                            <label for="female">Female</label><br>
+                        </p>
+                    </div>
+                    <div class="submit">
+                        <input type="submit" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div> 
+    </section>
+    
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <script>
+        const dataForm = document.getElementById('dataForm');
+        
+        dataForm.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the form from submitting
+    
+            const name = dataForm.querySelector('[name="name"]').value;
+            const regNum = dataForm.querySelector('[name="regNum"]').value;
+            const email = dataForm.querySelector('[name="email"]').value;
+            const phone = dataForm.querySelector('[name="phonenumber"]').value;
+            const gender = dataForm.querySelector('[name="gender"]:checked').value;
+    
+            const userData = {
+                name: name,
+                regNum: regNum,
+                email: email,
+                phone: phone,
+                gender: gender
+            };
+    
+            localStorage.setItem('userData', JSON.stringify(userData));
+    
+            alert('Data saved to local storage!');
+            document.getElementById('registrationForm').reset();
+        });
+    </script>
+</body>
+
+</html>
